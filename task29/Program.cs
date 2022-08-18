@@ -21,14 +21,14 @@ namespace task29
             Console.Write("Введите максимальный эллемент массива: ");
             max = Convert.ToInt32(Console.ReadLine());
 
-            int[] array = new int[size];
+            int[] array = new int[size]; // Инициализация массива заданного размера
 
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < size; i++) // Инициализация счётчика цикла; условие выполнения цикла; увеличение счётчика +1
 
             {
-                array[i] = new Random().Next(min, max + 1);
+                array[i] = new Random().Next(min, max + 1); // Генерация случайных чисел массива от min до max +1 (+1 нужен, чтобы включить последний заданный элемент массива)
             }
-            Console.WriteLine($"[{String.Join(",", array)}]");
+            Console.WriteLine($"[{String.Join(",", array)}]"); // Оптимизация вывода
         }
     }
 }
