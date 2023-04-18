@@ -5,15 +5,24 @@
 22, 3, 9 -> 22
 */
 
+// Запрос у пользователя трех чисел
 Console.Write("Введите первое число: ");
-int numberA = Convert.ToInt32(Console.ReadLine());
+int a = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите второе число: ");
-int numberB = Convert.ToInt32(Console.ReadLine());
+int b = Convert.ToInt32(Console.ReadLine());
 Console.Write("Введите третье число: ");
-int numberC = Convert.ToInt32(Console.ReadLine());
-int max = numberA;
-if (numberB > max) max = numberB;
-if (numberC > max) max = numberC;
+int c = Convert.ToInt32(Console.ReadLine());
+
+// Находим максимальное из трех чисел
+int max = a; // Переменной max присваивается значение первого числа
+if (b > max) // Если второе число больше максимального, то оно становится новым максимальным числом
 {
-    Console.Write(max);
+    max = b;
 }
+if (c > max) // Если третье число больше максимального, то оно становится новым максимальным числом
+{
+    max = c;
+}
+
+// Вывод максимального числа на консоль
+Console.Write("Максимальное число: " + max);

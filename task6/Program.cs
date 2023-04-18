@@ -4,13 +4,22 @@
 -3 -> нет
 7 -> нет
 */
-Console.Write("Введите число : ");
-int numberA = Convert.ToInt32(Console.ReadLine());
-if (numberA % 2 == 0)
+Console.Write("Введите число: ");
+int inputNumber = 0; // создание переменной для ввода числа
+bool isInputValid = int.TryParse(Console.ReadLine(), out inputNumber); // проверка корректности ввода
+
+if (isInputValid) // если ввод корректен
 {
-    Console.Write("Да");
+    if (inputNumber % 2 == 0) // если число четное
+    {
+        Console.Write("Да, число {0} четное", inputNumber);
+    }
+    else // если число нечетное
+    {
+        Console.Write("Нет, число {0} нечетное", inputNumber);
+    }
 }
-else
+else // если ввод некорректен
 {
-    Console.Write("Нет");
+    Console.Write("Некорректный ввод");
 }

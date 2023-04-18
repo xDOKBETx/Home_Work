@@ -7,48 +7,50 @@
 17 -> такого числа в массиве нет
 */
 
-int[,] CreateArray(int row, int column)
+using System;
+
+class Program
 {
-    int[,] array = new int[row, column];
-    for (int i = 0; i < row; i++)
+    static void Main(string[] args)
     {
-        for (int j = 0; j < column; j++)
+        // Создаем двумерный массив размером 5х5
+        int[,] myArray = new int[5, 5];
+        // Создаем объект Random для генерации случайных чисел
+        Random rand = new Random();
+
+        // Заполняем массив случайными числами и выводим его на экран
+        Console.WriteLine("Созданный массив:");
+        for (int i = 0; i < myArray.GetLength(0); i++)
         {
-            array[i, j] = new Random().Next(1, 10);
+            for (int j = 0; j < myArray.GetLength(1); j++)
+            {
+                // Генерируем случайное число и записываем его в элемент массива
+                myArray[i, j] = rand.Next(10);
+                // Выводим значение элемента массива на экран
+                Console.Write(myArray[i, j] + " ");
+            }
+            // Переходим на следующую строку после вывода элементов строки массива
+            Console.WriteLine();
         }
-    }
-    return array;
-}
-void PrintArray(int[,] plenty)
-{
-    for (int i = 0; i < plenty.GetLength(0); i++)
-    {
-        for (int j = 0; j < plenty.GetLength(1); j++)
+
+        // Получаем позицию элемента от пользователя
+        Console.WriteLine("Введите позицию элемента в формате \"строка,столбец\":");
+        string[] position = Console.ReadLine().Split(',');
+        int row = int.Parse(position[0]);
+        int column = int.Parse(position[1]);
+
+        // Проверяем, что указанные позиции не выходят за границы массива
+        if (row >= myArray.GetLength(0) || column >= myArray.GetLength(1))
         {
-            Console.Write($"{plenty[i, j]}  ");
+            Console.WriteLine("Указанный элемент не существует в массиве.");
         }
-        Console.WriteLine();
+        else
+        {
+            // Получаем значение элемента и выводим его на экран
+            int element = myArray[row, column];
+            Console.WriteLine($"Значение элемента: {element}");
+        }
+
+        Console.ReadLine();
     }
 }
-
-int rowArray = new Random().Next(1, 10);
-int columnArray = new Random().Next(1, 10);
-int[,] plenty = CreateArray(rowArray, columnArray);
-
-Console.Write("Введите номер строки элемента массиве: ");
-int numRow = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите номер столбца элемента в массиве: ");
-int numColumn = Convert.ToInt32(Console.ReadLine());
-
-Console.WriteLine($"Массив {rowArray}x{columnArray}: ");
-PrintArray(plenty);
-
-if (numRow > rowArray || numColumn > columnArray)
-{
-    Console.WriteLine($"Элемента с координатами {numRow}x{numColumn} в массиве нет");
-}
-else
-{
-    Console.WriteLine($"Элемент массива с координатами {numRow}x{numColumn} = {plenty[numRow - 1, numColumn - 1]}");
-}
-

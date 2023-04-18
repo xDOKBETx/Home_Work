@@ -3,18 +3,17 @@ a = 5; b = 7 -> max = 7
 a = 2 b = 10 -> max = 10
 a = -9 b = -3 -> max = -3
 */
-
-Console.Write("Введите первое число: ");
-var firstNumber = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите второе число: ");
-var secondNumber = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите первое число: "); // вывод сообщения о запросе первого числа
+var firstNumber = Convert.ToInt32(Console.ReadLine()); // ввод первого числа
+Console.Write("Введите второе число: "); // вывод сообщения о запросе второго числа
+var secondNumber = Convert.ToInt32(Console.ReadLine()); // ввод второго числа
 
 // Находим максимальное число
-if (firstNumber > secondNumber)
+if (firstNumber > secondNumber) // если первое число больше второго
 {
-    Console.Write($"Максимальное число: {firstNumber}");
+    Console.Write($"Максимальное число: {firstNumber}"); // выводим первое число, как максимальное
 }
-else
+else // в противном случае
 {
-    Console.Write($"Максимальное число: {secondNumber}");
+    Console.Write($"Максимальное число: {secondNumber}"); // выводим второе число, как максимальное
 }

@@ -4,7 +4,12 @@
 782 -> 8
 918 -> 1
 */
+// Запрашиваем у пользователя трёхзначное число
 Console.Write("Введите трёхзначное число от 100 до 999: ");
-int number = Convert.ToInt32(Console.ReadLine());
-int result = number / 10 % 10;
-Console.Write($"Вторая цифра числа {number}: {result}");
+int userInput = Convert.ToInt32(Console.ReadLine());
+
+// Извлекаем вторую цифру из числа, используя операторы деления и остатка от деления
+int secondDigit = userInput / 10 % 10;
+
+// Выводим вторую цифру на экран, используя строку формата
+Console.Write($"Вторая цифра числа {userInput}: {secondDigit}");

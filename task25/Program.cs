@@ -3,28 +3,26 @@
 2, 4 -> 16
 */
 
-namespace task25  // Название проекта
+namespace Exponentiation // Объявление пространства имён
 {
     class Program // Объявление класса 
     {
-        static void Main(string[] args) /* # Заголовок метода где static – это модификатор
-Void – тип возвращаемого значения. Ключевое слово, которое указывает на то, что метод ничего не возвращает посредством return
-Main – имя «функции»
-String [] args – параметр method. Представляет собой массив строк */
+        static void Main(string[] args) // Метод Main - входная точка программы
         {
-            int baseNum, powNum, result = 1; // Инициализация переменных
+            int baseNum, exponent, result = 1; // Инициализация переменных: основание, показатель степени, результат
+
             Console.Write("Введите число: ");
-            baseNum = Convert.ToInt32(Console.ReadLine());
+            baseNum = Convert.ToInt32(Console.ReadLine()); // Чтение основания с консоли
+
             Console.Write("Введите степень: ");
-            powNum = Convert.ToInt32(Console.ReadLine());
+            exponent = Convert.ToInt32(Console.ReadLine()); // Чтение показателя степени с консоли
 
-            for (int i = 1; i <= powNum; i++) // Инициализация счётчика цикла "i"; условие цикла; увеличение счётчика
+            for (int i = 1; i <= exponent; i++) // Цикл для вычисления степени числа
             {
-                result = result * baseNum; // Вычисления
+                result *= baseNum; // Вычисление степени
             }
-            Console.WriteLine(result);
 
-
+            Console.WriteLine($"Результат: {result}"); // Вывод результата на консоль
         }
     }
 }

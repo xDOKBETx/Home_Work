@@ -3,47 +3,69 @@
 [3, 7, 23, 12] -> 19
 [-4, -6, 89, 6] -> 0
 */
+
+// Получаем от пользователя размер массива
 Console.Write("Введите размер массива: ");
 int size = Convert.ToInt32(Console.ReadLine());
 
-int[] GetArray(int size, int minValue, int maxValue)
+// Функция для создания массива заданного размера, заполненного случайными числами в заданном диапазоне
+int[] CreateRandomArray(int size, int minValue, int maxValue)
 {
-  int[] res = new int[size];
+    // Создаем пустой массив заданного размера
+    int[] result = new int[size];
 
-  for (int i = 0; i < size;i++)
-  {
-    res[i] = new Random().Next(minValue, maxValue + 1);
-  }
-  return res;
+    // Заполняем массив случайными числами в заданном диапазоне
+    for (int i = 0; i < size; i++)
+    {
+        // Генерируем случайное число в диапазоне от minValue до maxValue и записываем его в текущий элемент массива
+        result[i] = new Random().Next(minValue, maxValue + 1);
+    }
+
+    // Возвращаем заполненный массив
+    return result;
 }
 
+// Функция для вывода массива на консоль
 void PrintArray(int[] array)
 {
-	for (int i = 0; i < array.Length; i++)
-	{
-		if(i == 0) Console.Write("[");
-		if(i < array.Length - 1) Console.Write(array[i] + ",");
-		else Console.Write(array[i] + "]");
-	}
+    // Выводим открывающую скобку массива
+    Console.Write("[");
+    for (int i = 0; i < array.Length; i++)
+    {
+        // Выводим текущий элемент массива
+        Console.Write(array[i]);
+
+        // Если это не последний элемент, выводим запятую и пробел
+        if (i < array.Length - 1)
+        {
+            Console.Write(",");
+        }
+    }
+    // Выводим закрывающую скобку массива и переводим курсор на следующую строку
+    Console.WriteLine("]");
 }
 
-int SumOfOddElements(int[] array){
+// Функция для нахождения суммы элементов, стоящих на нечетных позициях
+int SumOfOddElements(int[] array)
+{
+    // Инициализируем сумму элементов, стоящих на нечетных позициях, нулем
+    int sum = 0;
 
-	int sum = 0;
+    // Проходимся по массиву и складываем значения элементов, стоящих на нечетных позициях
+    for (int i = 1; i < array.Length; i += 2)
+    {
+        sum += array[i];
+    }
 
-	for (int i = 1; i < array.Length; i++)
-	{
-		if (i % 2 != 0){
-			sum += array[i];
-		}
-	}
-	return sum;
+    // Возвращаем найденную сумму
+    return sum;
 }
 
-int[] array = GetArray(size,-100,100);
-PrintArray(array); 
-Console.WriteLine(); 
+// Создаем массив случайных чисел и выводим его на консоль
+int[] array = CreateRandomArray(size, -100, 100);
+PrintArray(array);
+Console.WriteLine();
 
+// Находим сумму элементов, стоящих на нечетных позициях, и выводим ее на консоль
 int sum = SumOfOddElements(array);
-
 Console.WriteLine($"Сумма нечетных элементов = {sum}");

@@ -4,22 +4,50 @@
 9012 -> 12
 */
 
-namespace task27
+namespace MathUtils
 {
-    class Program
+    // Класс для вычисления суммы цифр
+    class DigitSumCalculator
     {
+        // Точка входа в приложение
         static void Main(string[] args)
         {
-            int number, sum = 0; // Инициализация переменных число и сумма(первоначально равна 0)
+            // Пользовательский ввод
             Console.Write("Введите число: ");
-            number = Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
 
-            while (number > 0) // Пока число больше 0, выполняется следующие вычисления...
+            // Проверка на возможность преобразования в число
+            if (!int.TryParse(input, out int inputNumber))
             {
-                sum += (number % 10);  // Сумма = Сумма + (остаток от деления числа)
-                number /= 10; // Число = Число деленное на 10
+                Console.WriteLine("Ошибка: введенная строка не является числом.");
+                return;
             }
-            Console.WriteLine(sum);
+
+            // Вычисление суммы цифр
+            int digitSum = 0;
+            for (int i = 0; i < input.Length; i++)
+            {
+                char c = input[i];
+
+                // Проверка на отрицательное число
+                if (c == '-' && i == 0)
+                {
+                    continue; // Пропустить символ '-' в начале числа
+                }
+
+                // Проверка на цифру
+                if (!char.IsDigit(c))
+                {
+                    Console.WriteLine("Ошибка: введенная строка не является числом.");
+                    return;
+                }
+
+                // Вычисление суммы цифр
+                digitSum += c - '0'; // Конвертирование символа в числовое значение и добавление его к сумме цифр
+            }
+
+            // Вывод результата
+            Console.WriteLine($"Сумма цифр в числе {inputNumber} равна {digitSum}.");
         }
     }
 }

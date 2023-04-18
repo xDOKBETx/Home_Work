@@ -8,48 +8,39 @@
 Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 */
 
-int[,] CreateArray(int row, int column)
-{
-    int[,] array = new int[row, column];
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = 0; j < column; j++)
-        {
-            array[i, j] = new Random().Next(1, 10);
+using System;
+
+class Program {
+    static void Main(string[] args) {
+        // Создаем двумерный массив размером 5x5
+        int[,] matrix = new int[5, 5];
+
+        // Создаем экземпляр генератора случайных чисел
+        Random random = new Random();
+
+        // Заполняем массив случайными числами от 0 до 9
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                matrix[i, j] = random.Next(10); // Генерируем случайное число от 0 до 9 и записываем его в ячейку массива
+                Console.Write(matrix[i, j] + " "); // Выводим значение ячейки на консоль, разделяя пробелом
+            }
+            Console.WriteLine(); // Переходим на новую строку для вывода следующей строки массива
+        }
+
+        // Находим среднее арифметическое для каждого столбца
+        for (int j = 0; j < 5; j++) {
+            double sum = 0;
+
+            // Считаем сумму элементов столбца
+            for (int i = 0; i < 5; i++) {
+                sum += matrix[i, j];
+            }
+
+            // Вычисляем среднее арифметическое
+            double average = sum / 5;
+
+            // Выводим результат на консоль
+            Console.WriteLine($"Среднее арифметическое для столбца {j + 1} равно {average}");
         }
     }
-    return array;
-}
-void PrintArray(int[,] plenty)
-{
-    for (int i = 0; i < plenty.GetLength(0); i++)
-    {
-        for (int j = 0; j < plenty.GetLength(1); j++)
-        {
-            Console.Write($"{plenty[i, j]}  ");
-        }
-        Console.WriteLine();
-    }
-}
-double ArithmeticMean(int[,] array, int indexColumn)
-{
-    int sum = 0;
-    for (int i = 0; i < array.GetLength(0); i++)
-    {
-        sum += array[i, indexColumn];
-    }
-    return (double) sum / (array.GetLength(0));
-}
-
-int rowArray = new Random().Next(1, 10);
-int columnArray = new Random().Next(1, 10);
-int[,] plenty = CreateArray(rowArray, columnArray);
-
-Console.WriteLine($"Массив {rowArray}x{columnArray}:");
-PrintArray(plenty);
-
-Console.Write($"Среднее арифметическое каждого столбца:");
-for (int i = 0; i < columnArray; i++)
-{
-    Console.Write($" {Math.Round(ArithmeticMean(plenty, i), 1)} ");
 }

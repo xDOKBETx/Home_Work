@@ -3,43 +3,41 @@
 [3 7 22 2 78] -> 76
 */
 
+// Запрос у пользователя на ввод размера массива
 Console.Write("Введите размер массива: ");
 int size = Convert.ToInt32(Console.ReadLine());
+
+// Создание массива заданного размера и заполнение его случайными вещественными числами
 double[] numbers = new double[size];
-GetArray(numbers);
-PrintArray(numbers);
-double min = Int32.MaxValue;
-double max = Int32.MinValue;
-
-void GetArray(double[] numbers)
+for(int i = 0; i < numbers.Length; i++)
 {
-    for(int i = 0; i < numbers.Length; i++)
-        {
-            numbers[i] = Convert.ToDouble(new Random().Next(100,1000)) / 100;
-        }
+    // Генерация случайного числа от 100 до 1000 и деление на 100, чтобы получить вещественное число от 1.00 до 10.00
+    numbers[i] = Convert.ToDouble(new Random().Next(100,1000)) / 100;
 }
 
-void PrintArray(double[] numbers)
+// Вывод массива на экран
+Console.Write("[ ");
+for(int i = 0; i < numbers.Length; i++)
 {
-    Console.Write("[ ");
-    for(int i = 0; i < numbers.Length; i++)
-        {
-            Console.Write(numbers[i] + " ");
-        }
-    Console.Write("]");
-    Console.WriteLine();
+    Console.Write(numbers[i] + " ");
 }
+Console.Write("]");
+Console.WriteLine();
 
+// Поиск минимального и максимального значения в массиве
+double min = double.MaxValue; // переменная, которая будет использоваться для хранения минимального значения массива; инициализирована с максимально возможным значением для double, чтобы любое другое значение в массиве гарантированно будет меньше
+double max = double.MinValue; // переменная, которая будет использоваться для хранения максимального значения массива; инициализирована с минимально возможным значением для double, чтобы любое другое значение в массиве гарантированно будет больше
 for (int j = 0; j < numbers.Length; j++)
 {
-    if (numbers[j] > max)
-        {
-            max = numbers[j];
-        }
-    if (numbers[j] < min)
-        {
-            min = numbers[j];
-        }
+    if (numbers[j] > max) // если текущий элемент больше максимального значения, то присваиваем текущий элемент переменной max
+    {
+        max = numbers[j];
+    }
+    if (numbers[j] < min) // если текущий элемент меньше минимального значения, то присваиваем текущий элемент переменной min
+    {
+        min = numbers[j];
+    }
 }
 
-Console.WriteLine($"Разница между максимальным и минимальным значением = {max - min}");
+// Вывод разницы между максимальным и минимальным значением на экран
+Console.WriteLine($"Разница между максимальным и минимальным значением = {max - min}"); // выводим на экран разницу между максимальным и минимальным значениями в массиве

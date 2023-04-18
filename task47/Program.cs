@@ -5,35 +5,62 @@ m = 3, n = 4.
 8 7,8 -7,1 9
 */
 
-double[,] CreateArray(int row, int column)
+// Создание двумерного массива заданного размера со случайными значениями.
+double[,] CreateRandomArray(int rows, int columns)
 {
-    double[,] array = new double[row, column];
-    for (int i = 0; i < row; i++)
+    // Создаем новый двумерный массив заданного размера.
+    double[,] array = new double[rows, columns];
+
+    // Создаем экземпляр класса Random для генерации случайных чисел.
+    // Он будет использоваться для генерации случайных значений ячеек массива.
+    Random rand = new Random();
+
+    // Проходим по всем строкам и столбцам массива и заполняем каждую ячейку случайным вещественным числом.
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < column; j++)
+        for (int j = 0; j < columns; j++)
         {
-            array[i, j] = new Random().NextDouble() * new Random().Next(-10, 10);
+            // Генерируем случайное вещественное число от 0 до 1 с помощью метода NextDouble() класса Random.
+            // Умножаем его на случайное целое число в диапазоне от -10 до 10 с помощью метода Next() класса Random,
+            // чтобы получить случайное вещественное число в диапазоне от -10 до 10.
+            array[i, j] = rand.NextDouble() * rand.Next(-10, 10);
         }
     }
+
+    // Возвращаем заполненный массив.
     return array;
 }
-void PrintArray(double[,] plenty)
+
+// Печать двумерного массива в консоли.
+void PrintArray(double[,] array)
 {
-    for (int i = 0; i < plenty.GetLength(0); i++)
+    // Проходим по всем строкам массива.
+    for (int i = 0; i < array.GetLength(0); i++)
     {
-        for (int j = 0; j < plenty.GetLength(1); j++)
+        // Проходим по всем столбцам массива в текущей строке.
+        for (int j = 0; j < array.GetLength(1); j++)
         {
-            Console.Write("{0,5:N1}", plenty[i, j]);
+            // Форматируем и выводим значение текущей ячейки массива с помощью метода Write() класса Console.
+            // Форматируем значение так, чтобы оно занимало 5 символов, включая 1 знак после запятой.
+            Console.Write("{0,5:N1}", array[i, j]);
         }
+
+        // Переходим на новую строку после печати всех столбцов в текущей строке массива.
         Console.WriteLine();
     }
 }
 
+// Получение размеров массива от пользователя и вывод его содержимого в консоль.
+// Запрос на ввод количества строк.
+Console.Write("Введите количество строк в массиве: ");
+int rows = Convert.ToInt32(Console.ReadLine());
 
-Console.Write("Введите число строк в массиве: ");
-int m = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите число столбцов в массиве: ");
-int n = Convert.ToInt32(Console.ReadLine());
+// Запрос на ввод количества столбцов.
+Console.Write("Введите количество столбцов в массиве: ");
+int columns = Convert.ToInt32(Console.ReadLine());
 
-Console.WriteLine($"Массив {m} x {n}: ");
-PrintArray(CreateArray(m, n));
+// Вывод информации о размерах массива.
+Console.WriteLine($"Массив {rows} x {columns}: ");
+
+// Создание случайного массива заданного размера и вывод его содержимого в консоль.
+PrintArray(CreateRandomArray(rows, columns));
