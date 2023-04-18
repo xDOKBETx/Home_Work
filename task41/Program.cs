@@ -1,10 +1,9 @@
-﻿/* Задача 41: Пользователь вводит с клавиатуры M чисел. 
+/* Задача 41: Пользователь вводит с клавиатуры M чисел. 
 Посчитайте, сколько чисел больше 0 ввёл пользователь.
 0, 7, 8, -2, -2 -> 2
 -1, -7, 567, 89, 223-> 3
 */
 
-<<<<<<< HEAD
 // Запросить у пользователя количество чисел, которое он хочет ввести
 Console.Write("Введите количество чисел: ");
 int numberOfInputs;
@@ -40,24 +39,6 @@ int CountPositiveNumbers(int[] numbersArray)
 {
     int count = 0;
     // Перебирать элементы массива и подсчитывать количество положительных чисел
-=======
-Console.Write($"Введите число М (количество чисел): ");
-int m = Convert.ToInt32(Console.ReadLine());
-int[] numbersArray = new int[m];
-
-void CurrentNumbers(int m)
-{
-    for (int i = 0; i < m; i++)
-    {
-        Console.Write($"Введите {i + 1}-е число: ");
-        numbersArray[i] = Convert.ToInt32(Console.ReadLine());
-    }
-}
-
-int PositivNumbers(int[] numbersArray)
-{
-    int count = 0;
->>>>>>> 42cf586ff41c6457aefa25349b01b0d319b847ed
     for (int i = 0; i < numbersArray.Length; i++)
     {
         if (numbersArray[i] > 0) count++;
@@ -65,12 +46,7 @@ int PositivNumbers(int[] numbersArray)
     return count;
 }
 
-<<<<<<< HEAD
 // Вызвать функцию для ввода чисел пользователем
 InputNumbers(numberOfInputs);
 // Вывести количество положительных чисел
 Console.WriteLine($"Количество положительных чисел: {CountPositiveNumbers(numbersArray)}");
-=======
-CurrentNumbers(m);
-Console.WriteLine($"Чисел больше 0: {PositivNumbers(numbersArray)}");
->>>>>>> 42cf586ff41c6457aefa25349b01b0d319b847ed
