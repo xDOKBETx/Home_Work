@@ -6,44 +6,43 @@
 Третье число - «b» конец диапазона (не включительно)
 */
 
-/*
-Задача 29: Напишите программу, которая задаёт массив из N элементов, заполненных случайными числами из [a, b) и выводит их на экран.
-5, 0, 20 -> [1, 2, 5, 7, 19] 
-3, 1, 35 -> [6, 1, 33]
-Первое число - количество элементов 
-Второе число - «а» начало диапазона случайных чисел (включительно) 
-Третье число - «b» конец диапазона (не включительно)
-*/
 
 using System;
 
-namespace task29
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        // Ввод количества элементов массива с клавиатуры
+        Console.Write("Введите количество элементов массива: ");
+        int N = int.Parse(Console.ReadLine());
+
+        // Ввод начала и конца диапазона случайных чисел с клавиатуры
+        Console.Write("Введите начало диапазона: ");
+        int a = int.Parse(Console.ReadLine());
+        Console.Write("Введите конец диапазона: ");
+        int b = int.Parse(Console.ReadLine());
+
+        // Создание объекта класса Random для генерации случайных чисел
+        Random rnd = new Random();
+
+        // Создание массива arr с N элементами
+        int[] arr = new int[N];
+
+        // Заполнение массива случайными числами в заданном диапазоне и вывод на экран
+        Console.Write("[");
+        for (int i = 0; i < N; i++)
         {
-            // Запрос на ввод параметров массива
-            Console.Write("Введите размер массива: ");
-            int size = int.Parse(Console.ReadLine());
-
-            Console.Write("Введите минимальный элемент массива: ");
-            int min = int.Parse(Console.ReadLine());
-
-            Console.Write("Введите максимальный элемент массива: ");
-            int max = int.Parse(Console.ReadLine());
-
-            // Создание экземпляра класса Random
-            Random rand = new Random();
-
-            int[] array = new int[size]; // Инициализация массива заданного размера
-
-            for (int i = 0; i < size; i++) // Инициализация счётчика цикла; условие выполнения цикла; увеличение счётчика +1
+            arr[i] = rnd.Next(a, b);
+            Console.Write(arr[i]);
+            if (i < N - 1)
             {
-                array[i] = rand.Next(min, max + 1); // Генерация случайных чисел массива от min до max +1 (+1 нужен, чтобы включить последний заданный элемент массива)
+                Console.Write(", ");
             }
-
-            Console.WriteLine($"[{String.Join(", ", array)}]"); // Оптимизация вывода с использованием String.Join
         }
+        Console.WriteLine("]");
+
+        // Переход на новую строку для удобства отображения
+        Console.WriteLine();
     }
 }
